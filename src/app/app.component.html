@@ -1,0 +1,194 @@
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .spacer {
+    flex: 0.8;
+  }
+
+  .spacer2 {
+    flex: 0.02;
+  }
+
+  .spacer3 {
+    flex: 0.9;
+  }
+
+  .toolbar {
+    height: 80px;
+    margin: -8px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+  }
+
+  .toolbar img {
+    margin: 0 20px;
+  }
+
+  .content {
+    display: flex;
+    margin-top: 32px;
+    padding-top: 10px;
+    align-items: center;
+  }
+
+  a,
+  a:visited,
+  a:hover {
+    color: #1976d2;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #125699;
+  }
+
+  footer {
+    height: 500px;
+    margin: -8px;
+    margin-top: 64px;
+    display: flex;
+    align-items: center;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+    line-height: 20px;
+  }
+
+  footer a {
+    display: flex;
+    align-items: center;
+  }
+
+  .map{
+    height: 60%;
+}
+
+</style>
+
+<!-- Toolbar Header-->
+<div class="toolbar" role="banner">
+    <img width="160" alt="Logo Jobex" src="http://jobexgh.com/wp-content/uploads/2017/09/Untitled-1.png"/>
+    <div class="spacer"></div>
+    <button class="btn btn-outline-light btn-sm" *ngIf="disconnected">S'inscrire</button>
+    <div class="spacer2"></div>
+    <button class="btn btn-outline-light btn-sm" *ngIf="disconnected">Connexion</button>
+    <div class="spacer2" *ngIf="connected"></div>
+    <button class="btn btn-outline-light btn-sm" *ngIf="connected">Déconnexion</button>
+    <div class="spacer2"></div>
+    <i class="material-icons md-48" *ngIf="connected">account_circle</i>
+</div>
+
+<div class="toolbar">
+    <div class="spacer3"></div>
+    <nav class="navbar navbar-expand-md">
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" width="50">
+                    <h6 class="nav-link text-white">Accueil</h6>
+                </li>
+                <li class="nav-item">
+                    <h6 class="nav-link text-white">Recherche</h6>
+                </li>
+                <li class="nav-item">
+                    <h6 class="nav-link text-white">Contact</h6>
+                </li>
+                <li class="nav-item">
+                    <h6 class="nav-link text-white" *ngIf="connected">Compte</h6>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Body -->
+
+<!-- Footer -->
+<div class="footer" role="main">
+  <footer>
+      <div class="container">
+          <div class="row">
+              <div class="col-lg">
+                  <h6>Services/Produits</h6>
+                  <div *ngFor="let categorie of catalogue">
+                      <div class="col">
+                          <div class="row">
+                              <p>{{categorie.nomCatalogue}}</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg">
+                  <h6>Zones Couvertes</h6>
+                  <div *ngFor="let zone of zones">
+                      <div class="col">
+                          <div class="row">
+                              <p>{{zone.adresse}}</p>
+                          </div>
+                      </div>
+                </div>
+              </div>
+              <div class="col-lg">
+                  <h6>A Propos</h6>
+                  <p>Peu importe d'où vous venez ou ce que 
+                     vous recherchez, nous avons l'option 
+                     idéale pour vous. Nos 29 070 474 hébergements, 
+                     y compris 6 274 112 maisons, appartements 
+                     et logements uniques, sont répartis dans 
+                     155 177 destinations et 228 pays et 
+                     territoires. Booking.com B.V. a son 
+                     siège à Amsterdam, aux Pays_Bas, et 
+                     son activité est soutenue dans le monde 
+                     entier par 198 bureaux dans 70 pays.
+                  </p>
+              </div>
+              <div class="col-lg">
+                  <h6>Contacts</h6>
+                  <div #mapElement class="map"></div>
+                  <div style="margin-top: 12px; padding: 5px">
+                      <p>Adresse: Fann Résidence - Dakar</p>
+                      <p>Mail: job@job.sn</p>
+                      <p>Téléphone: +221 7X XXX XX XX</p>
+                      <p>Fixe: +221 3X XXX XX XX</p>
+                      <p>Nous joindre sur...</p>
+                      <div>
+                          <img src="https://img.icons8.com/ios/50/000000/facebook-f.png">
+                          <img src="https://img.icons8.com/ios/50/000000/twitter.png">
+                          <img src="https://img.icons8.com/windows/64/000000/linkedin-2.png">
+                          <img src="https://img.icons8.com/dotty/80/000000/youtube.png">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </footer>
+</div>
+
+<!-- Copyright -->
+<div>
+    <h6 style="text-align: center">Copyright_azertyuiopqsdfghjklmwxcvbn</h6>
+</div>
+
+<router-outlet></router-outlet>
